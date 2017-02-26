@@ -9,7 +9,7 @@ namespace ModernStore.Domain.Entities
 {
     public class Order : Entity
     {
-        public Order(Custumer custumer, decimal deliveryFee, decimal discount)
+        public Order(Customer custumer, decimal deliveryFee, decimal discount)
         {
             Custumer = custumer;
             CreateDate = DateTime.Now;
@@ -26,7 +26,7 @@ namespace ModernStore.Domain.Entities
 
         private readonly IList<OrderItem> _itens;
 
-        public Custumer Custumer { get; private set; }
+        public Customer Custumer { get; private set; }
 
         public DateTime CreateDate { get; private set; }
         public string Number { get; private set; }

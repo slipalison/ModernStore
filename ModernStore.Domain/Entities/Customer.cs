@@ -5,16 +5,16 @@ using System;
 
 namespace ModernStore.Domain.Entities
 {
-    public class Custumer : Entity
+    public class Customer : Entity
     {
-        public Custumer(Name name, User user, Email email,Document document)
+        public Customer(Name name, User user, Email email,Document document)
         {
             Name = name; ;
             BirthDate = null;
             Email = email;
             User = user;
             Document = document;
-            Validate = new ValidationContract<Custumer>(this);
+            Validate = new ValidationContract<Customer>(this);
             AddNotifications(Name.Notifications);
             AddNotifications(Email.Notifications);
             AddNotifications(Document.Notifications);
@@ -27,7 +27,7 @@ namespace ModernStore.Domain.Entities
         public User User { get; private set; }
         public Email Email { get; private set; }
 
-        private ValidationContract<Custumer> Validate { get; set; }
+        private ValidationContract<Customer> Validate { get; set; }
 
         public void Upadte(DateTime birthDate, string firstName, string lastName)
         {

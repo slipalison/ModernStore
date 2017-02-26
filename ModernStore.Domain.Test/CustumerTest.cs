@@ -8,11 +8,11 @@ namespace ModernStore.Domain.Test
     {
 
         public User User{ get; private set; }
-        public Custumer Custumer { get; private set; }
+        public Customer Custumer { get; private set; }
         public CustumerTest()
         {
-            User = new User("slipalison","slipalison" );
-            Custumer = new Custumer(new Name("Alison", "Amorim"), User,new Email("alison@alison.com"), new Document("37207835884"));
+            User = new User("slipalison","slipalison", "slipalison");
+            Custumer = new Customer(new Name("Alison", "Amorim"), User,new Email("alison@alison.com"), new Document("37207835884"));
         }
 
         [Fact]

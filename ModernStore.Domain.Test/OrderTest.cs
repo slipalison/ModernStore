@@ -9,13 +9,13 @@ namespace ModernStore.Domain.Test
     public class OrderTest
     {
         private readonly List<Product> _listProduct;
-        private readonly Custumer _custumer;
+        private readonly Customer _custumer;
         private readonly Order _order;
 
         public OrderTest()
         {
-            _custumer = new Custumer(new Name("Alison", "Amorim")
-                , new User("slipalison", "slipalison")
+            _custumer = new Customer(new Name("Alison", "Amorim")
+                , new User("slipalison", "slipalison", "slipalison")
                 , new Email("alison@alison.com")
                 , new Document("37207835884"));
 

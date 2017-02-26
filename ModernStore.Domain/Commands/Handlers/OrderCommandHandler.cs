@@ -1,27 +1,27 @@
-﻿using System;
-using FluentValidator.Validation;
-using ModernStore.Domain.Commands;
+﻿using FluentValidator.Validation;
 using ModernStore.Shared.Commands;
 using ModernStore.Domain.Repositories;
 using ModernStore.Domain.Entities;
 using System.Linq;
+using ModernStore.Domain.Commands.Inputs;
+using ModernStore.Domain.Commands.Results;
 
-namespace ModernStore.Domain.CommandHandlers
+namespace ModernStore.Domain.Commands.Handlers
 {
     public class OrderCommandHandler : Notifiable, ICommandHandler<RegisterOrderCommand>
     {
-        private readonly ICustumerPepository _custumerRepository;
+        private readonly ICustomerRepository _custumerRepository;
         private readonly IProductRepository _productRepository;
         private readonly IOrderRepository _orderRepository;
 
-        public OrderCommandHandler(ICustumerPepository custumerRepository, IProductRepository productRepository, IOrderRepository orderRepository)
+        public OrderCommandHandler(ICustomerRepository custumerRepository, IProductRepository productRepository, IOrderRepository orderRepository)
         {
             _custumerRepository = custumerRepository;
             _productRepository = productRepository;
             _orderRepository = orderRepository;
         }
 
-        public void Handle(RegisterOrderCommand command)
+        public ICommandResult Handle(RegisterOrderCommand command)
         {
             var order = new Order(_custumerRepository.Get(command.CustumerId), command.DeviveryFee, command.Discount);
             command.Items.ToList().ForEach(x =>
@@ -30,6 +30,8 @@ namespace ModernStore.Domain.CommandHandlers
             AddNotifications(order.Notifications);
             if (order.IsValid())
                 _orderRepository.Save(order);
+
+            return new RegisterOrderCommandResult(order.Number);
         }
     }
 }
