@@ -1,39 +1,37 @@
 ﻿using FluentValidator.Validation;
 using ModernStore.Shared.Entities;
+using ModernStore.Shared.ValueObjects;
 using System;
 
 namespace ModernStore.Domain.Entities
 {
     public class Custumer : Entity
     {
-        public Custumer(string firstName, string lastName, User user, string email)
+        public Custumer(Name name, User user, Email email,Document document)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name; ;
             BirthDate = null;
             Email = email;
             User = user;
+            Document = document;
             Validate = new ValidationContract<Custumer>(this);
-           
-            //validate
-            Validate.IsRequired(x => x.FirstName).HasMaxLenght(x => x.FirstName, 60).HasMinLenght(x => x.FirstName, 3);
-            Validate.IsRequired(x => x.LastName).HasMaxLenght(x => x.LastName, 60).HasMinLenght(x => x.LastName, 3);
-            Validate.IsRequired(x => x.Email).IsEmail(x=>x.Email).HasMaxLenght(x => x.Email, 60).HasMinLenght(x => x.Email, 3);
+            AddNotifications(Name.Notifications);
+            AddNotifications(Email.Notifications);
+            AddNotifications(Document.Notifications);
         }
 
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public Name Name { get; private set; }
+
+        public Document Document { get; private set; }
         public DateTime? BirthDate { get; private set; }
         public User User { get; private set; }
-        public string Email { get; private set; }
+        public Email Email { get; private set; }
 
         private ValidationContract<Custumer> Validate { get; set; }
 
         public void Upadte(DateTime birthDate, string firstName, string lastName)
         {
             BirthDate = birthDate;
-            FirstName = FirstName;
-            LastName = lastName;
         }
     }
 }

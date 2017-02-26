@@ -1,4 +1,5 @@
 using ModernStore.Domain.Entities;
+using ModernStore.Shared.ValueObjects;
 using Xunit;
 
 namespace ModernStore.Domain.Test
@@ -11,7 +12,7 @@ namespace ModernStore.Domain.Test
         public CustumerTest()
         {
             User = new User("slipalison","slipalison" );
-            Custumer = new Custumer("", "amorim", User,"alison@alison.com");
+            Custumer = new Custumer(new Name("Alison", "Amorim"), User,new Email("alison@alison.com"), new Document("37207835884"));
         }
 
         [Fact]
