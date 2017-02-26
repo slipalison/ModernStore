@@ -13,7 +13,7 @@ namespace ModernStore.Domain.Entities
         {
             Custumer = custumer;
             CreateDate = DateTime.Now;
-            Number = Guid.NewGuid().ToString().Substring(0, 8);
+            Number = Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
             Status = EOrderStatus.Created;
             DeliveryFee = deliveryFee;
             Discount = discount;
@@ -21,8 +21,9 @@ namespace ModernStore.Domain.Entities
             Validate = new ValidationContract<Order>(this);
 
             Validate.IsGreaterThan(x => x.DeliveryFee, 0);
-            Validate.IsGreaterThan(x => x.DeliveryFee, -1);
+            Validate.IsGreaterThan(x => x.Discount, -1);
         }
+
         private readonly IList<OrderItem> _itens;
 
         public Custumer Custumer { get; private set; }
@@ -30,6 +31,7 @@ namespace ModernStore.Domain.Entities
         public DateTime CreateDate { get; private set; }
         public string Number { get; private set; }
         public EOrderStatus Status { get; private set; }
+
         public IReadOnlyCollection<OrderItem> Items => _itens.ToArray();
 
         public decimal DeliveryFee { get; private set; }
@@ -38,13 +40,19 @@ namespace ModernStore.Domain.Entities
 
         public decimal SubTotal() => Items.Sum(x => x.Total());
 
-        public decimal Total() => SubTotal() + DeliveryFee - Discount;
+        public decimal Total() => (SubTotal() + DeliveryFee) - Discount;
 
         public void AddItem(OrderItem item)
         {
-
+            AddNotifications(item.Notifications);
             if (item.IsValid())
                 _itens.Add(item);
+        }
+
+        public void Place()
+        {
+
+
         }
     }
 }

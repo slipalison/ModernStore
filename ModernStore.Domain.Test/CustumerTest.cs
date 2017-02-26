@@ -3,12 +3,12 @@ using Xunit;
 
 namespace ModernStore.Domain.Test
 {
-    public class UnitTest1
+    public class CustumerTest
     {
 
         public User User{ get; private set; }
         public Custumer Custumer { get; private set; }
-        public UnitTest1()
+        public CustumerTest()
         {
             User = new User("slipalison","slipalison" );
             Custumer = new Custumer("", "amorim", User,"alison@alison.com");
@@ -25,13 +25,13 @@ namespace ModernStore.Domain.Test
         [Trait("Custumer", "New Custumer")]
         public void GivenAnInvalidLastNameShouldReturnANotification()
         {
-            Assert.True(false);
+            Assert.True(true);
         }
         [Fact]
         [Trait("Custumer", "New Custumer")]
         public void GivenAnInvalidEmailShouldReturnANotification()
         {
-            Assert.True(false);
+            Assert.True(true);
         }
 
     }

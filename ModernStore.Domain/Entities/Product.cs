@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ModernStore.Domain.Entities
 {
-    public class Product:Entity
+    public class Product : Entity
     {
         public Product(string title, decimal price, int quantityOnHand, string image)
         {
@@ -19,5 +19,8 @@ namespace ModernStore.Domain.Entities
         public decimal Price { get; private set; }
         public int QuantityOnHand { get; private set; }
         public string Image { get; private set; }
+
+        public void DecreaseQuantity(int quanntity) => QuantityOnHand -= quanntity;
+
     }
 }
