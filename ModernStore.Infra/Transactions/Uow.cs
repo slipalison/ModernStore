@@ -11,7 +11,7 @@ namespace ModernStore.Infra.Transactions
             _context = context;
         }
 
-        public void Commit()=> _context.SaveChanges();
+        public void Commit() => _context.SaveChanges();
 
         public void Rollback()
         {

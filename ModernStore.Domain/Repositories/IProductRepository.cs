@@ -1,7 +1,7 @@
-﻿using ModernStore.Domain.Entities;
+﻿using ModernStore.Domain.Commands.Results;
+using ModernStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ModernStore.Domain.Repositories
 {
@@ -9,6 +9,7 @@ namespace ModernStore.Domain.Repositories
     {
         Product Get(Guid id);
         IEnumerable<Product> Get(List<Guid> id);
+        IEnumerable<GetProductListCommandResult> Get();
 
     }
 }
