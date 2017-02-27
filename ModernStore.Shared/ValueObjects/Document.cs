@@ -4,6 +4,11 @@ namespace ModernStore.Shared.ValueObjects
 {
     public class Document : Notifiable
     {
+
+        protected Document()
+        {
+
+        }
         public Document(string number)
         {
             Number = number;
@@ -13,6 +18,7 @@ namespace ModernStore.Shared.ValueObjects
         }
 
         public string Number{ get; private set; }
+
         public bool Validate(string cpf)
         {
             var multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };

@@ -4,6 +4,10 @@ namespace ModernStore.Shared.ValueObjects
 {
     public class Email : Notifiable
     {
+        protected Email()
+        {
+
+        }
         public Email(string address)
         {
             Address = address;

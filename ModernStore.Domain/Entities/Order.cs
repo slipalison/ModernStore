@@ -9,6 +9,11 @@ namespace ModernStore.Domain.Entities
 {
     public class Order : Entity
     {
+
+        protected Order()
+        {
+
+        }
         public Order(Customer custumer, decimal deliveryFee, decimal discount)
         {
             Custumer = custumer;
@@ -18,10 +23,10 @@ namespace ModernStore.Domain.Entities
             DeliveryFee = deliveryFee;
             Discount = discount;
             _itens = new List<OrderItem>();
-            Validate = new ValidationContract<Order>(this);
+            _validate = new ValidationContract<Order>(this);
 
-            Validate.IsGreaterThan(x => x.DeliveryFee, 0);
-            Validate.IsGreaterThan(x => x.Discount, -1);
+            _validate.IsGreaterThan(x => x.DeliveryFee, 0);
+            _validate.IsGreaterThan(x => x.Discount, -1);
         }
 
         private readonly IList<OrderItem> _itens;
@@ -32,11 +37,11 @@ namespace ModernStore.Domain.Entities
         public string Number { get; private set; }
         public EOrderStatus Status { get; private set; }
 
-        public IReadOnlyCollection<OrderItem> Items => _itens.ToArray();
+        public ICollection<OrderItem> Items => _itens.ToArray();
 
         public decimal DeliveryFee { get; private set; }
         public decimal Discount { get; private set; }
-        public ValidationContract<Order> Validate { get; private set; }
+        private ValidationContract<Order> _validate { get; set; }
 
         public decimal SubTotal() => Items.Sum(x => x.Total());
 

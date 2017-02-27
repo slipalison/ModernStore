@@ -7,7 +7,13 @@ namespace ModernStore.Domain.Entities
 {
     public class Customer : Entity
     {
-        public Customer(Name name, User user, Email email,Document document)
+
+        protected Customer()
+        {
+
+        }
+
+        public Customer(Name name, User user, Email email, Document document)
         {
             Name = name; ;
             BirthDate = null;
@@ -22,10 +28,61 @@ namespace ModernStore.Domain.Entities
 
         public Name Name { get; private set; }
 
+        public string FirstName
+        {
+            get { return Name.FirstName; }
+            private set
+            {
+                Name = new Name(value, Name.LastName);
+                AddNotifications(Name.Notifications);
+            }
+        }
+        public string LastName
+        {
+            get { return Name.LastName; }
+            private set
+            {
+                Name = new Name(Name.FirstName, value);
+                AddNotifications(Name.Notifications);
+            }
+        }
+
         public Document Document { get; private set; }
+
+        public string Document_Number
+        {
+            get
+            {
+                return Document.Number;
+            }
+            private set
+            {
+                Document = new Document(value);
+                AddNotifications(Document.Notifications);
+            }
+        }
+
+
         public DateTime? BirthDate { get; private set; }
-        public User User { get; private set; }
+        public virtual User User { get; private set; }
+
+
         public Email Email { get; private set; }
+
+        public string Email_Address
+        {
+            get
+            {
+                return Email.Address;
+            }
+            private set
+            {
+                Email = new Email(value);
+                AddNotifications(Email.Notifications);
+            }
+        }
+
+
 
         private ValidationContract<Customer> Validate { get; set; }
 

@@ -10,8 +10,7 @@ using ModernStore.Shared.ValueObjects;
 
 namespace ModernStore.Domain.Commands.Handlers
 {
-    public class CustomerCommandHandler : Notifiable,
-        ICommandHandler<RegisterCustomerCommand>
+    public class CustomerCommandHandler : Notifiable, ICommandHandler<RegisterCustomerCommand>
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IEmailService _emailService;

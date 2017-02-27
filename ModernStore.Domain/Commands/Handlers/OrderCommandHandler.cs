@@ -28,7 +28,7 @@ namespace ModernStore.Domain.Commands.Handlers
                 order.AddItem(new OrderItem(_productRepository.Get(x.Product), x.Quantity))
             );
             AddNotifications(order.Notifications);
-            if (order.IsValid())
+            if (IsValid())
                 _orderRepository.Save(order);
 
             return new RegisterOrderCommandResult(order.Number);

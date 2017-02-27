@@ -5,8 +5,15 @@ using System.Text;
 
 namespace ModernStore.Domain.Entities
 {
+
+    
+   
     public class Product : Entity
     {
+        protected Product()
+        {
+
+        }
         public Product(string title, decimal price, int quantityOnHand, string image)
         {
             Title = title;
