@@ -1,11 +1,10 @@
-﻿using ModernStore.Domain.Repositories;
-using ModernStore.Domain.Entities;
-using ModernStore.Infra.Contexts;
+﻿using Dapper;
 using Microsoft.EntityFrameworkCore;
-using System;
 using ModernStore.Domain.Commands.Results;
-using System.Linq;
-using Dapper;
+using ModernStore.Domain.Entities;
+using ModernStore.Domain.Repositories;
+using ModernStore.Infra.Contexts;
+using System;
 
 namespace ModernStore.Infra.Repositories
 {
@@ -52,15 +51,13 @@ namespace ModernStore.Infra.Repositories
             => _context.Customers.Include(x => x.User).AsNoTracking().FirstOrDefaultAsync(x => x.User.Username == username).Result;
 
 
-        public void Save(Customer customer)
-        {
+        public void Save(Customer customer) =>
             _context.Customers.Add(customer);
-            _context.SaveChanges();
-        }
+        // _context.SaveChanges();
+
 
         public void Update(Customer customer)
-        {
-            _context.Entry(customer).State = EntityState.Modified;
-        }
+            => _context.Entry(customer).State = EntityState.Modified;
+
     }
 }

@@ -30,19 +30,19 @@ namespace ModernStore.Domain.Entities
 
         public string FirstName
         {
-            get { return Name.FirstName; }
+            get { return Name == null ? "" : Name.FirstName; }
             private set
             {
-                Name = new Name(value, Name.LastName);
+                Name = new Name(value, LastName);
                 AddNotifications(Name.Notifications);
             }
         }
         public string LastName
         {
-            get { return Name.LastName; }
+            get { return Name == null ? "" : Name.LastName; }
             private set
             {
-                Name = new Name(Name.FirstName, value);
+                Name = new Name(FirstName, value);
                 AddNotifications(Name.Notifications);
             }
         }

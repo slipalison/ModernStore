@@ -1,18 +1,36 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNetCore.Mvc;
+using ModernStore.Domain.Repositories;
+using System;
 
 namespace ModernStore.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     public class ProductController : Controller
     {
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IProductRepository _prodructs;
+
+        public ProductController(IProductRepository prodructs)
         {
-            return new string[] { "value1", "value2" };
+            _prodructs = prodructs;
+        }
+
+
+        [HttpGet, Route("v1/produtos")]
+        public IActionResult Get()
+        {
+            return Ok(_prodructs.Get());
+        }
+
+        [HttpPost, Route("v1/produtos")]
+        public string Create()
+        {
+            return $"Criando";
+        }
+
+        [HttpGet, Route("v1/produtos/{id}")]
+        public string Get(Guid id)
+        {
+            return $"Produto: {id}";
         }
     }
 }

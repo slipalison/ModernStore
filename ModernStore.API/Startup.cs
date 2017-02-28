@@ -2,6 +2,13 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ModernStore.Domain.Commands.Handlers;
+using ModernStore.Domain.Repositories;
+using ModernStore.Domain.Services;
+using ModernStore.Infra.Contexts;
+using ModernStore.Infra.Repositories;
+using ModernStore.Infra.Services;
+using ModernStore.Infra.Transactions;
 
 namespace ModernStore.API
 {
@@ -11,6 +18,18 @@ namespace ModernStore.API
         {
             services.AddMvc();
             services.AddCors();
+
+            services.AddScoped<ModerStoreDataContext, ModerStoreDataContext>();
+            services.AddTransient<IUow, Uow>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+
+            services.AddTransient<CustomerCommandHandler, CustomerCommandHandler>();
+            services.AddTransient<OrderCommandHandler, OrderCommandHandler>();
+
+            services.AddTransient<IEmailService, EmailService>();
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -19,7 +38,7 @@ namespace ModernStore.API
 
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-                       
+
             app.UseCors(x =>
             {
                 x.AllowAnyHeader();

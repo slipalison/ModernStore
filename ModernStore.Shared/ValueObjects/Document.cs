@@ -13,7 +13,7 @@ namespace ModernStore.Shared.ValueObjects
         {
             Number = number;
 
-            if (Validate(number))
+            if (!Validate(number))
                 AddNotification("Document", "CPF Invalido");
         }
 

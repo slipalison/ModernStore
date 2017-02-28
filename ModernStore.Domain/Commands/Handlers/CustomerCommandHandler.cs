@@ -54,8 +54,8 @@ namespace ModernStore.Domain.Commands.Handlers
             _emailService.Send(
                 customer.Name.ToString(),
                 customer.Email.Address,
-                string.Format(EmailTemplates.WelcomeEmailTitle, customer.Name),
-                string.Format(EmailTemplates.WelcomeEmailBody, customer.Name));
+                string.Format(EmailTemplates.WelcomeEmailTitle, customer.Name.ToString()),
+                string.Format(EmailTemplates.WelcomeEmailBody,  customer.Name.ToString()));
 
             // Passo 6. Retornar algo
             return new RegisterCustomerCommandResult(customer.Id, customer.Name.ToString());
