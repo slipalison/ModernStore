@@ -48,7 +48,7 @@ namespace ModernStore.Infra.Repositories
 
 
         public Customer GetByUsername(string username)
-            => _context.Customers.Include(x => x.User).AsNoTracking().FirstOrDefaultAsync(x => x.User.Username == username).Result;
+            => _context.Customers.Include(x => x.User).FirstOrDefaultAsync(x => x.User.Username == username).Result;
 
 
         public void Save(Customer customer) =>

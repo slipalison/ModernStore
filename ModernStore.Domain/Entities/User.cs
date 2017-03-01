@@ -14,7 +14,7 @@ namespace ModernStore.Domain.Entities
         public User(string username, string password, string confirmPassword)
         {
             Username = username;
-            Password = password;
+            Password = EncryptPassword(password);
             Active = false;
 
             _validate = new ValidationContract<User>(this);
@@ -28,6 +28,17 @@ namespace ModernStore.Domain.Entities
         public bool Active { get; private set; }
         public void Activate() => Active = true;
         public void Deactivate() => Active = false;
+
+
+        public bool Authenticate(string username, string password)
+        {
+
+            if (Username == username && Password == EncryptPassword(password)) return true;
+
+            AddNotification("User", "Usuário ou senha inválidos");
+            return false;
+        }
+
 
         private string EncryptPassword(string pass)
         {
