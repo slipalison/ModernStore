@@ -11,14 +11,18 @@ namespace ModernStore.Domain.Entities
         {
 
         }
+
         public User(string username, string password, string confirmPassword)
         {
             Username = username;
-            Password = EncryptPassword(password);
+            Password = password;
             Active = false;
 
             _validate = new ValidationContract<User>(this);
             _validate.AreEquals(x => x.Password, confirmPassword, "As senhas não conhecidem");
+
+            Password = EncryptPassword(password);
+
         }
 
         private ValidationContract<User> _validate { get; set; }
