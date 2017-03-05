@@ -1,6 +1,7 @@
 ﻿using FluentValidator.Validation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using ModernStore.Domain;
 using ModernStore.Domain.Entities;
 using ModernStore.Infra.Mappings;
 using ModernStore.Shared.ValueObjects;
@@ -20,8 +21,8 @@ namespace ModernStore.Infra.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Password=sysadm;Persist Security Info=True;User ID=sa;Initial Catalog=ModernStore;Data Source=DESKTOP-KTK8HTQ");
-
+            //@"Password=sysadm;Persist Security Info=True;User ID=sa;Initial Catalog=ModernStore;Data Source=DESKTOP-KTK8HTQ"
+            optionsBuilder.UseSqlServer(RunTime.ConnectionString);
         }
 
 

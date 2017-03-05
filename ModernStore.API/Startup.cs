@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using ModernStore.API.Security;
+using ModernStore.Domain;
 using ModernStore.Domain.Commands.Handlers;
 using ModernStore.Domain.Repositories;
 using ModernStore.Domain.Services;
@@ -29,6 +30,15 @@ namespace ModernStore.API
         private const string SECRET_KEY = "c1f51f42-5727-4d15-b787-c6bbbb645024";
 
         private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SECRET_KEY));
+
+        public Startup(IHostingEnvironment env)
+        {
+            var configurationBuilder =  new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appSettings.json")
+            .AddEnvironmentVariables();
+            Configuration = configurationBuilder.Build();
+        }
 
 
         public void ConfigureServices(IServiceCollection services)
@@ -126,6 +136,7 @@ namespace ModernStore.API
 
             app.UseMvc();
 
+            RunTime.ConnectionString = Configuration.GetConnectionString("CnnStr");
         }
     }
 }
