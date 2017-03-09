@@ -1,20 +1,14 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:4200",
-            "webRoot": "${workspaceRoot}"
-        },
-        {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 4200,
-            "webRoot": "${workspaceRoot}"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "LaunchChrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}",
+      "userDataDir": "${workspaceRoot}"
+    }
+  ]
 }
