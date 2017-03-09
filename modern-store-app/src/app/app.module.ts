@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+//route
+import {Routing, RoutingProviders } from './app.routing'
+
 //root
 import { AppComponent } from './app.component';
 
@@ -16,6 +19,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SingupPageComponent } from './pages/singup-page/singup-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    Routing
   ],
   providers: [],
   bootstrap: [AppComponent]
