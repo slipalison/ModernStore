@@ -9,14 +9,17 @@
         <div class="columns is-mobile">
           <div class="column is-half is-offset-one-quarter">
             <p class="control has-icon">
-              <input class="input" type="email" placeholder="e-mail" formControlName="email">
+              <input class="input"
+              (blur)="checkEmail()"
+              [ngClass]="{'is-danger':(!form.controls.email.valid && !form.controls.email.pristine)}" 
+              type="email" placeholder="e-mail" formControlName="email">
               <span class="icon is-small"><i class="fa fa-envelope"></i></span>
-              
+              <span class="tag is-danger" *ngIf="!form.controls.email.valid && !form.controls.email.pristine" >e-mail inválido</span>
             </p>
             <p class="control has-icon">
-              <input class="input" type="password" placeholder="senha" formControlName="password">
+              <input class="input" [ngClass]="{'is-danger':(!form.controls.password.valid && !form.controls.password.pristine)}"  type="password" placeholder="senha" formControlName="password">
               <span class="icon is-small">   <i class="fa fa-lock"></i>  </span>
-
+              <span class="tag is-danger" *ngIf="!form.controls.password.valid && !form.controls.password.pristine ">senha inválido</span>
             </p>
             <p class="control">
               <button (click)="submit()" [disabled]="!form.valid" class="button is-primary is-inverted is-outlined is-large is-fullheight is-fullwidth">Login</button>
