@@ -20,6 +20,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SingupPageComponent } from './pages/singup-page/singup-page.component';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
+//services
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
     HttpModule,
     Routing
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

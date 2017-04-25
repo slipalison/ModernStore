@@ -6,6 +6,6 @@ namespace ModernStore.Domain
 {
     public static class RunTime
     {
-        public static string ConnectionString = "";
+        public static string ConnectionString = "CnnStr";
     }
 }

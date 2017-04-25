@@ -21,8 +21,8 @@ namespace ModernStore.Infra.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //@"Password=sysadm;Persist Security Info=True;User ID=sa;Initial Catalog=ModernStore;Data Source=DESKTOP-KTK8HTQ"
-            optionsBuilder.UseSqlServer(RunTime.ConnectionString);
+            //@"Password=sysadm;Persist Security Info=True;User ID=sa;Initial Catalog=ModernStore;Data Source=DESKTOP-8L02BL6"
+            optionsBuilder.UseSqlServer(@"Password=sysadm;Persist Security Info=True;User ID=sa;Initial Catalog=ModernStore;Data Source=DESKTOP-8L02BL6");
         }
 
 

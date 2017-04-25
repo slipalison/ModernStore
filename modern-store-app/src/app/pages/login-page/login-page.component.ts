@@ -38,6 +38,14 @@ export class LoginPageComponent implements OnInit {
   submit() {
     this.dataService.createUser(this.form.value)
   }
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.dataService.getCourses().subscribe(result => {
+      console.log(result);
+    }, error => {
+
+    });
+
+  }
 
 }
