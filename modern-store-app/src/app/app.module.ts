@@ -22,6 +22,8 @@ import { CartPageComponent } from './pages/cart-page/cart-page.component';
 
 //services
 import { CartService } from './services/cart.service';
+import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,7 @@ import { CartService } from './services/cart.service';
     HttpModule,
     Routing
   ],
-  providers: [CartService],
+  providers: [CartService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

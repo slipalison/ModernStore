@@ -10,11 +10,11 @@
           <div class="column is-half is-offset-one-quarter">
             <p class="control has-icon">
               <input class="input"
-              (blur)="checkEmail()"
-              [ngClass]="{'is-danger':(!form.controls.email.valid && !form.controls.email.pristine)}" 
-              type="email" placeholder="e-mail" formControlName="email">
+              
+              [ngClass]="{'is-danger':(!form.controls.username.valid && !form.controls.username.pristine)}" 
+              type="text" placeholder="Usuário" formControlName="username">
               <span class="icon is-small"><i class="fa fa-envelope"></i></span>
-              <span class="tag is-danger" *ngIf="!form.controls.email.valid && !form.controls.email.pristine" >e-mail inválido</span>
+              <span class="tag is-danger" *ngIf="!form.controls.username.valid && !form.controls.username.pristine" >usuário inválido</span>
             </p>
             <p class="control has-icon">
               <input class="input" [ngClass]="{'is-danger':(!form.controls.password.valid && !form.controls.password.pristine)}"  type="password" placeholder="senha" formControlName="password">
